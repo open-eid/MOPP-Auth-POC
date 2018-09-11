@@ -1,4 +1,4 @@
-package ee.ria.webapp;
+package ee.ria.webapp.exception;
 
 import ee.ria.relyingparty.exception.ErrorDetails;
 

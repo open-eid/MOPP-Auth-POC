@@ -1,3 +1,3 @@
-rootProject.name = 'id-card-auth-server'
+rootProject.name = 'id-card-auth-service'
 
 include 'relying-party-auth-service', 'account-service', 'authentication-device-response-service', 'webapp'
