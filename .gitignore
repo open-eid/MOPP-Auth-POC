@@ -5,6 +5,23 @@
 # Google service account
 *service-account.json 
 
+
+# Relying Party Auth Service
+/relying-party-auth-service/build/
+/relying-party-auth-service/out/
+
+# Account Service
+/account-service/build/
+/account-service/out/
+
+# Authentication Device Response Service
+/authentication-device-response-service/build/
+/authentication-device-response-service/out/
+
+# Webapp
+/webapp/build/
+/webapp/out/
+
 ### STS ###
 .apt_generated
 .classpath
