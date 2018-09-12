@@ -1,4 +1,4 @@
-package ee.ria.sessionservice;
+package ee.ria.session;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

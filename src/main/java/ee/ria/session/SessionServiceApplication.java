@@ -1,4 +1,4 @@
-package ee.ria.sessionservice;
+package ee.ria.session;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
