@@ -1,4 +1,4 @@
-package ee.ria.relyingparty.exception;
+package ee.ria.webapp.exception;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,5 @@
 package ee.ria.webapp.exception;
 
-import ee.ria.relyingparty.exception.ErrorDetails;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
