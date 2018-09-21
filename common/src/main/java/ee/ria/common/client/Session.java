@@ -1,9 +1,9 @@
-package ee.ria.relyingparty.authentication.client;
+package ee.ria.common.client;
 
 import lombok.Data;
 
 @Data
-public class SessionRequest{
+public class Session {
     private String sessionId;
     private String hash;
     private String nationalIdentityNumber;

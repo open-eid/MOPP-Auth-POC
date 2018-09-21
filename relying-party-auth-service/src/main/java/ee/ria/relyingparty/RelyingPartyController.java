@@ -21,9 +21,9 @@ public class RelyingPartyController {
         return authenticationService.activateAuthentication(request);
     }
 
-    @GetMapping("/authentication/session/{session}")
-    public ResponseEntity<AuthenticationStatusResponse> getSession(@PathVariable String session) {
-        return new ResponseEntity<>(new AuthenticationStatusResponse(), HttpStatus.OK);
+    @GetMapping("/authentication/session/{sessionId}")
+    public ResponseEntity<AuthenticationStatusResponse> getSession(@PathVariable String sessionId) {
+        return new ResponseEntity<>(authenticationService.getStatusResponse(sessionId), HttpStatus.OK);
     }
 
 }

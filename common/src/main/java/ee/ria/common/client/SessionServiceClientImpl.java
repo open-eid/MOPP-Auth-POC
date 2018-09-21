@@ -1,6 +1,6 @@
-package ee.ria.relyingparty.authentication.client;
+package ee.ria.common.client;
 
-import ee.ria.relyingparty.configuration.ConfigurationProvider;
+import ee.ria.common.configuration.ConfigurationProvider;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,11 +22,30 @@ public class SessionServiceClientImpl implements SessionServiceClient {
     private RestTemplate restTemplate;
 
     @Override
-    public void createNewSession(SessionRequest request) {
+    public Session getSession(String sessionId) {
+        return restTemplate.getForObject(configurationProvider.getSessionEndpoint() + "/" + sessionId, Session.class);
+    }
+
+    @Override
+    public void deleteCompleteSession(String sessionId) {
+        restTemplate.delete(configurationProvider.getSessionEndpoint() + "/" + sessionId);
+    }
+
+    @Override
+    public void createNewSession(Session request) {
         ResponseEntity<Void> responseEntity = restTemplate.exchange(configurationProvider.getSessionEndpoint(),
                 HttpMethod.POST, formHttpEntity(request), Void.class);
         if(!(HttpStatus.CREATED == responseEntity.getStatusCode())){
             throw new RuntimeException("Session could not be created");
+        }
+    }
+
+    @Override
+    public void updateSession(Session request) {
+        ResponseEntity<Void> responseEntity = restTemplate.exchange(configurationProvider.getSessionEndpoint(),
+                HttpMethod.PUT, formHttpEntity(request), Void.class);
+        if (!(HttpStatus.ACCEPTED == responseEntity.getStatusCode())) {
+            throw new RuntimeException("Session could not be updated");
         }
     }
 

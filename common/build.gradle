@@ -10,7 +10,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 
 jar {
-    baseName = 'account-service'
+    baseName = 'common'
     version = '0.0.1'
 }
 sourceCompatibility = 1.8
@@ -21,7 +21,6 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.projectlombok:lombok:1.18.2')
     annotationProcessor('org.projectlombok:lombok:1.18.2')
-    compile project(':common')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 

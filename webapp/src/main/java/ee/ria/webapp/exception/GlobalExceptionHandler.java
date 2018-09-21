@@ -1,5 +1,7 @@
 package ee.ria.webapp.exception;
 
+import ee.ria.common.exception.SessionNotFoundException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,16 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+    @ExceptionHandler(SessionNotFoundException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ResponseEntity<ErrorDetails> handleSessionNotFoundException(Exception ex, WebRequest request) {
+        String errorMessage = "Session not found - " + ex.getMessage();
+        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), errorMessage,
+                request.getDescription(false));
+        LOGGER.warn("Session not found - {}", ex.getMessage());
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

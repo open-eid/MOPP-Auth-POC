@@ -1,4 +1,4 @@
-package ee.ria.relyingparty.exception;
+package ee.ria.common.exception;
 
 public class AuthServerException extends RuntimeException {
 

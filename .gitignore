@@ -22,6 +22,10 @@
 /webapp/build/
 /webapp/out/
 
+# Common 
+/common/build/
+/common/out/
+
 ### STS ###
 .apt_generated
 .classpath

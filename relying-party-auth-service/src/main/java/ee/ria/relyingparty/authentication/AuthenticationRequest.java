@@ -7,5 +7,4 @@ public class AuthenticationRequest {
 
     private String nationalIdentityNumber;
     private String hash;
-    private HashType hashType;
 }

@@ -1,7 +1,7 @@
 package ee.ria.deviceresponse.authentication;
 
-import ee.ria.deviceresponse.authentication.client.ReplySessionServiceClient;
-import ee.ria.deviceresponse.authentication.client.Session;
+import ee.ria.common.client.Session;
+import ee.ria.common.client.SessionServiceClient;
 import ee.ria.deviceresponse.validation.RequestValidator;
 import ee.ria.deviceresponse.validation.SignatureValidator;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class AuthenticationReplyServiceImpl implements AuthenticationReplyService {
 
     @Autowired
-    private ReplySessionServiceClient replySessionServiceClient;
+    private SessionServiceClient replySessionServiceClient;
     @Autowired
     private RequestValidator requestValidator;
     @Autowired
@@ -32,7 +32,7 @@ public class AuthenticationReplyServiceImpl implements AuthenticationReplyServic
             if (isSignatureValid) {
                 session.setResult(request.getResult());
                 session.setCert(request.getCert());
-                session.setSignature(request.getSignature().getValue());
+                session.setSignature(request.getSignature());
             } else {
                 session.setResult(ErrorCode.INVALID_SIGNATURE.name());
             }

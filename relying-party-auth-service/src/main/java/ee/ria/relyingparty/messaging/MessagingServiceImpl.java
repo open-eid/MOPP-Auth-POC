@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 
-import ee.ria.relyingparty.configuration.ConfigurationProvider;
-import ee.ria.relyingparty.exception.FireBaseConnectionException;
-import ee.ria.relyingparty.exception.GoogleServiceAccountNotFoundException;
+import ee.ria.common.configuration.ConfigurationProvider;
+import ee.ria.common.exception.FireBaseConnectionException;
+import ee.ria.common.exception.GoogleServiceAccountNotFoundException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,7 +64,6 @@ public class MessagingServiceImpl implements MessagingService{
         messageRoot.setToken(getClientToken());
 
         data.setHash(request.getHash());
-        data.setHashType(request.getHashType());
         data.setSessionId(request.getSessionId());
         messageRoot.setData(data);
 

@@ -1,4 +1,4 @@
-package ee.ria.deviceresponse.exception;
+package ee.ria.common.exception;
 
 public class InvalidCommonNameException extends CertificateException {
 }

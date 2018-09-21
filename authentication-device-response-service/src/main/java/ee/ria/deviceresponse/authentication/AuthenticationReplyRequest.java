@@ -6,7 +6,7 @@ import lombok.Data;
 public class AuthenticationReplyRequest {
     private String result;
     private String sessionId;
-    private Signature signature;
+    private String signature;
     private String hash;
     private String cert;
 }

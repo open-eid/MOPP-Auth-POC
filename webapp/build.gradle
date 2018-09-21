@@ -23,6 +23,7 @@ repositories { mavenCentral() }
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile project(':common')
     compile project(':relying-party-auth-service')
     compile project(':account-service')
     compile project(':authentication-device-response-service')

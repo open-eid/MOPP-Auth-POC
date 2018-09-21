@@ -1,4 +1,4 @@
-package ee.ria.deviceresponse.configuration;
+package ee.ria.common.configuration;
 
 import lombok.Data;
 
@@ -10,7 +10,8 @@ import org.springframework.validation.annotation.Validated;
 @ConfigurationProperties(prefix = "auth.server")
 @Validated
 @Data
-public class ReplyConfigurationProvider {
+public class ConfigurationProvider {
 
+    private String fireBaseEndpoint;
     private String sessionEndpoint;
 }
