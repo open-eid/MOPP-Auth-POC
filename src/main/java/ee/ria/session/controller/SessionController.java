@@ -15,8 +15,19 @@ public class SessionController {
 
     @ResponseStatus(code = HttpStatus.CREATED)
     @RequestMapping(method = RequestMethod.POST)
-    public void send(@RequestBody SessionRequest request) {
+    public void createSession(@RequestBody SessionRequest request) {
         sessionService.send(map(request));
+    }
+
+    @ResponseStatus(code = HttpStatus.ACCEPTED)
+    @RequestMapping(method = RequestMethod.PUT)
+    public void updateSession(@RequestBody SessionRequest request) {
+        sessionService.send(map(request));
+    }
+    @ResponseStatus(code = HttpStatus.OK)
+    @RequestMapping(value = "/{sessionId}", method = RequestMethod.DELETE)
+    public void deleteSession(@PathVariable("sessionId") String sessionId) {
+        sessionService.delete(sessionId);
     }
 
     @RequestMapping(value = "/{sessionId}", method = RequestMethod.GET)
@@ -27,9 +38,11 @@ public class SessionController {
     private static Session map(SessionRequest sessionRequest) {
         Session session = new Session();
         session.setSessionId(sessionRequest.getSessionId());
+        session.setHash(sessionRequest.getHash());
         session.setNationalIdentityNumber(sessionRequest.getNationalIdentityNumber());
         session.setResult(sessionRequest.getResult());
         session.setSignature(sessionRequest.getSignature());
+        session.setSignatureAlgorithm(sessionRequest.getSignatureAlgorithm());
         session.setCert(sessionRequest.getCert());
         return session;
     }

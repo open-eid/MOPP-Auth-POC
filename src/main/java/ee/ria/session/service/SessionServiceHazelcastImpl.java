@@ -24,18 +24,24 @@ public class SessionServiceHazelcastImpl implements SessionService {
 
     @Override
     public void send(Session session) {
-        LOG.debug("Submitting the message id:{}", session.getSessionId());
+        LOG.debug("Submitting the session id:{}", session.getSessionId());
         sessionIMap().set(session.getSessionId(), session);
     }
 
     @Override
     public Session receive(String sessionId) {
-        LOG.debug("Polling message for recipient: {}", sessionId);
+        LOG.debug("Polling session: {}", sessionId);
         Session session = sessionIMap().get(sessionId);
         if (session == null) {
             throw new SessionNotFoundException();
         }
         return session;
+    }
+
+    @Override
+    public void delete(String sessionId) {
+        LOG.debug("Deleting the session id:{}", sessionId);
+        sessionIMap().delete(sessionId);
     }
 
 }

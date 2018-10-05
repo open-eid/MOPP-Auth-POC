@@ -20,7 +20,7 @@ public class SessionConfiguration {
         config.setInstanceName("hazelcast-instance");
         config.addMapConfig(new MapConfig().setName(ConfigurationProvider.MAP_SESSION_CACHE)
                 .setMaxSizeConfig(new MaxSizeConfig(500, MaxSizeConfig.MaxSizePolicy.FREE_HEAP_SIZE))
-                .setTimeToLiveSeconds(120));
+                .setTimeToLiveSeconds(configurationProvider.getSessionExpirationInSeconds()));
         if(!configurationProvider.isMultiCastEnabled()) {
             config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
             config.getNetworkConfig().getJoin().getTcpIpConfig().setEnabled(true);
