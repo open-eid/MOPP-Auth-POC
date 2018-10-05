@@ -20,6 +20,7 @@ repositories { mavenCentral() }
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.projectlombok:lombok:1.18.2')
+    compile('org.apache.httpcomponents:httpclient:4.5.6')
     annotationProcessor('org.projectlombok:lombok:1.18.2')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

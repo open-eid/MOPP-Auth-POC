@@ -6,4 +6,5 @@ import lombok.Data;
 public class MessagingRequest {
     private String hash;
     private String sessionId;
+    private String deviceId;
 }

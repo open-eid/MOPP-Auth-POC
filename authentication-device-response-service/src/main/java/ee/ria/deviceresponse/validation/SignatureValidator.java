@@ -18,7 +18,7 @@ public class SignatureValidator {
             Signature sig = Signature.getInstance("NONEwithECDSAinP1363Format");
             X509Certificate certificate = CertificateUtil.generateCertificateX509Object(request.getCert());
             sig.initVerify(certificate);
-            sig.update(request.getHash().getBytes());
+            sig.update(Base64.decode(request.getHash().getBytes()));
             byte[] signature = Base64.decode(request.getSignature());
 
             return sig.verify(signature);

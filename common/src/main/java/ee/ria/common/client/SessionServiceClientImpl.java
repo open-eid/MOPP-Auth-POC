@@ -5,6 +5,7 @@ import ee.ria.common.configuration.ConfigurationProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ public class SessionServiceClientImpl implements SessionServiceClient {
     @Autowired
     private ConfigurationProvider configurationProvider;
     @Autowired
+    @Qualifier("sessionRestTemplate")
     private RestTemplate restTemplate;
 
     @Override

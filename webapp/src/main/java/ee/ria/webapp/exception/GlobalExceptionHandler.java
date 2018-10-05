@@ -1,5 +1,6 @@
 package ee.ria.webapp.exception;
 
+import ee.ria.common.exception.DeviceIdNotFoundException;
 import ee.ria.common.exception.SessionNotFoundException;
 
 import org.slf4j.Logger;
@@ -21,11 +22,22 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(SessionNotFoundException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ResponseEntity<ErrorDetails> handleSessionNotFoundException(Exception ex, WebRequest request) {
+    public ResponseEntity<ErrorDetails> handleSessionNotFoundException(Exception ex) {
         String errorMessage = "Session not found - " + ex.getMessage();
-        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), errorMessage,
-                request.getDescription(false));
+        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), "SESSION_NOT_FOUND",
+                errorMessage);
         LOGGER.warn("Session not found - {}", ex.getMessage());
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(DeviceIdNotFoundException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ResponseEntity<ErrorDetails> handleDeviceIdNotFoundException(Exception ex) {
+        String errorMessage = "Device id not found - " + ex.getMessage();
+        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), "DEVICE_ID_NOT_FOUND",
+                errorMessage);
+        LOGGER.warn("Device id not found for that person - {}", ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

@@ -10,6 +10,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class ErrorDetails {
     private LocalDateTime timestamp;
+    private String errorCode;
     private String message;
-    private String details;
 }

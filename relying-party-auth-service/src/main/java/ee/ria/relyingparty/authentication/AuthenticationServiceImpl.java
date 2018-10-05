@@ -1,7 +1,9 @@
 package ee.ria.relyingparty.authentication;
 
+import ee.ria.account.AccountService;
 import ee.ria.common.client.Session;
 import ee.ria.common.client.SessionServiceClient;
+import ee.ria.common.exception.DeviceIdNotFoundException;
 import ee.ria.common.exception.SessionNotFoundException;
 import ee.ria.relyingparty.messaging.MessagingRequest;
 import ee.ria.relyingparty.messaging.MessagingService;
@@ -20,13 +22,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Autowired
     private MessagingService messagingService;
     @Autowired
+    private AccountService accountService;
+    @Autowired
     private SessionServiceClient sessionServiceClient;
 
     @Override
     public AuthenticationResponse activateAuthentication(AuthenticationRequest request) {
         String sessionId = generateSessionId();
         sessionServiceClient.createNewSession(generateSessionRequest(request, sessionId));
-        messagingService.message(generateMessagingRequest(request, sessionId));
+        String deviceId = accountService.getDeviceId(request.getNationalIdentityNumber());
+        if (deviceId == null) {
+            throw new DeviceIdNotFoundException(request.getNationalIdentityNumber());
+        }
+        messagingService.message(generateMessagingRequest(request, sessionId, deviceId));
         return new AuthenticationResponse(sessionId);
     }
 
@@ -57,10 +65,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return session;
     }
 
-    private MessagingRequest generateMessagingRequest(AuthenticationRequest request, String sessionId) {
+    private MessagingRequest generateMessagingRequest(AuthenticationRequest request, String sessionId, String deviceId) {
         MessagingRequest messagingRequest = new MessagingRequest();
         messagingRequest.setHash(request.getHash());
         messagingRequest.setSessionId(sessionId);
+        messagingRequest.setDeviceId(deviceId);
         return messagingRequest;
     }
 

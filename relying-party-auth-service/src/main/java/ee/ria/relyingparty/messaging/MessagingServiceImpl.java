@@ -61,7 +61,7 @@ public class MessagingServiceImpl implements MessagingService{
         Message.MessageRoot.Data data = messageRoot.new Data();
         Message.MessageRoot.Notification notification = messageRoot.new Notification();
 
-        messageRoot.setToken(getClientToken());
+        messageRoot.setToken(request.getDeviceId());
 
         data.setHash(request.getHash());
         data.setSessionId(request.getSessionId());
@@ -73,10 +73,6 @@ public class MessagingServiceImpl implements MessagingService{
         message.setMessage(messageRoot);
         return message;
 
-    }
-
-    private String getClientToken() {
-        return "c8c0FgG7xOw:APA91bGDafsoV2QNUA9a_w7YhlhvQ9iYoiNt4oagvWNBPkeMNZ7ydv02PyvQTnQHviziEXX22wHPEDb_a_3olB5Qr8yeOe_IYcESXlrX5mYUaY181Yet6Ta_JTdT7H6lvZq91iuBFGJHxtmqWUKvK7hHZQGGP9IFGQ";
     }
 
     private String getAccessToken() {
