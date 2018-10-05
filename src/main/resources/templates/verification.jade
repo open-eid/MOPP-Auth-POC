@@ -1,0 +1,22 @@
+extends layout/main-layout
+include mixins/footer-mixins
+
+    block content
+        .row
+            .col-lg-6
+                h1.hidden-md-down Authentication
+                h3.hidden-md-up Authentication
+            .col-lg-2.hidden-md-down.pull-lg-right
+                img.pull-lg-right.eu-brand(src="img/eu-logo.svg")
+
+        .row
+            .top-buffer
+                h3 VerificationCode: #{verificationCode}
+        .row
+            #callAjax
+
+        .row
+            div(id = 'hashbase64', style='display: none;') #{hash}
+            div(id = 'nationalIdentityNumber', style='display: none;') #{nationalIdentityNumber}
+        +footerBuildInfo
+
