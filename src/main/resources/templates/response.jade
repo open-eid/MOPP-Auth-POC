@@ -1,0 +1,44 @@
+extends layout/main-layout
+include mixins/footer-mixins
+
+
+    block content
+        .row
+            .col-lg-6
+                h1.hidden-md-down Validation
+                h3.hidden-md-up Validation
+            .col-lg-2.hidden-md-down.pull-lg-right
+                img.pull-lg-right.eu-brand(src="img/eu-logo.svg")
+        .row
+            .col-md-6.col-md-offset-3
+                p
+                    | Name: #{personName}
+        .row
+            .col-md-6.col-md-offset-3
+                p
+                    | National Identity Number: #{nationalIdentityNumber}
+
+        .row
+          .col-md-6.col-md-offset-3
+            form(method='POST' action='/validate')
+              div.form-group
+               label(for='hash') Hash:
+               textarea(name='hash', rows='1', cols='100') #{hash}
+              div.form-group
+               label(for='signature') Signature:
+               textarea(name='signature', rows='2', cols='100') #{signature}
+
+              div.form-group
+                label(for='certificate') Certificate:
+                textarea(name='certificate', rows='5', cols='90') #{certificate}
+              button.btn.btn-primary(type='submit') Validate
+
+            if (result)
+                | Result: #{result}
+            if (verificationResult == 'OK')
+                | Result: Valid
+                img(src="img/verified.png", alt="Verified logo" class="verified")
+            else if (verificationResult == 'NOK')
+               | Result: Invalid
+               img(src="img/not-verified.png", alt="Not verified logo" class="verified")
+        +footerBuildInfo
