@@ -1,0 +1,7 @@
+rootProject.name = 'id-card-auth-service'
+
+include 'relying-party-auth-service', 'account-service', 'authentication-device-response-service', 'webapp', 'common'
+
+gradle.ext.liquibaseUrl = "jdbc:postgresql://localhost:5432/POC"
+gradle.ext.liquibaseUser = "postgres"
+gradle.ext.liquibasePassword = "parool123"
