@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # MOPP-Auth-POC
 =======
 # Id-card session service
@@ -39,4 +39,3 @@ java -jar build/libs/id-card-session-service-0.0.1.jar
 | server.ssl.trust-store-password           | Y        | Password used to access the trust store                                  | password123                           |
 | server.ssl.client-auth                    | Y        | Whether client authentication is wanted ("want") or needed ("need")      | need                                  |
 
->>>>>>> id-card-session-service/master
