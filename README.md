@@ -1,6 +1,6 @@
 
 # MOPP-Auth-POC
-=======
+
 # Id-card session service
 
 ## Build and run
